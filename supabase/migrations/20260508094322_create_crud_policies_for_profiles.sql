@@ -7,5 +7,5 @@ drop policy if EXISTS "Instructor can update their own profile" on "public".prof
 create policy "Instructor can update their own profile"
 on profiles for update
 to authenticated
-using ( (auth.uid()) = profiles.id )
-with check ( (auth.uid()) = profiles.id );
+using ( (select auth.uid()) = profiles.id )
+with check ( (select auth.uid()) = profiles.id );
