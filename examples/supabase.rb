@@ -26,7 +26,7 @@ resp = HTTParty.post("#{SUPABASE_URL}/auth/v1/token?grant_type=password",
     "Content-Type" => "application/json"
   },
   body: {
-    email: "nutoyo@email.com",
+    email: "nut@email.com",
     password: "supabase01"
   }.to_json
 )
@@ -35,6 +35,7 @@ ACCESS_TOKEN = resp["access_token"]
 # current user
 r = HTTParty.get("#{SUPABASE_URL}/auth/v1/user",
   headers: {
+    "apikey" => ANON_KEY,
     "Authorization" => "Bearer #{ACCESS_TOKEN}",
     "Content-Type" => "application/json",
     "Accept" => "application/json",
@@ -44,6 +45,7 @@ r = HTTParty.get("#{SUPABASE_URL}/auth/v1/user",
 # CRUD operations on profiles table
 r = HTTParty.get("#{SUPABASE_URL}/rest/v1/profiles",
   headers: {
+    "apikey" => ANON_KEY,
     "Authorization" => "Bearer #{ACCESS_TOKEN}",
     "Content-Type" => "application/json",
     "Accept" => "application/json",
@@ -53,20 +55,23 @@ r = HTTParty.get("#{SUPABASE_URL}/rest/v1/profiles",
 })
 
 resp = HTTParty.patch("#{SUPABASE_URL}/rest/v1/profiles", headers: {
+  "apikey" => ANON_KEY,
   "Authorization" => "Bearer #{ACCESS_TOKEN}",
   "Content-Type" => "application/json",
   "Prefer" => "return=representation"
 },
 query: {
-  id: "eq.a0cb459a-f3b6-4e8d-837c-8b588593e3b9"
+  id: "eq.7599407a-4ce8-408a-bc88-7f9586f7f9d3"
 },
 body: {
-  display_name: "Naning Utoyo Updated",
+  display_name: "naning utoyo",
+  avatar_url: "7599407a-4ce8-408a-bc88-7f9586f7f9d3/avatar.webp",
 }.to_json)
 
 # CRUD operations on sessions table
 r = HTTParty.get("#{SUPABASE_URL}/rest/v1/sessions",
   headers: {
+    "apikey" => ANON_KEY,
     "Authorization" => "Bearer #{ACCESS_TOKEN}",
     "Content-Type" => "application/json",
     "Accept" => "application/json",
@@ -74,14 +79,16 @@ r = HTTParty.get("#{SUPABASE_URL}/rest/v1/sessions",
 })
 
 resp = HTTParty.post("#{SUPABASE_URL}/rest/v1/sessions", headers: {
+  "apikey" => ANON_KEY,
   "Authorization" => "Bearer #{ACCESS_TOKEN}",
   "Content-Type" => "application/json",
   "Prefer" => "return=representation"
 }, body: {
-  studio_name: "Life At Studio",
+  studio_name: "In Da Studio",
 }.to_json)
 
 resp = HTTParty.patch("#{SUPABASE_URL}/rest/v1/sessions", headers: {
+  "apikey" => ANON_KEY,
   "Authorization" => "Bearer #{ACCESS_TOKEN}",
   "Content-Type" => "application/json",
   "Prefer" => "return=representation"
@@ -94,6 +101,7 @@ body: {
 }.to_json)
 
 resp = HTTParty.delete("#{SUPABASE_URL}/rest/v1/sessions", headers: {
+  "apikey" => ANON_KEY,
   "Authorization" => "Bearer #{ACCESS_TOKEN}",
   "Content-Type" => "application/json",
   "Prefer" => "return=representation"
