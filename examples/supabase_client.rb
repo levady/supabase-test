@@ -47,10 +47,11 @@ class SupabaseClient
     end
   end
 
-  def update_profile(display_name: nil, avatar_url: nil)
+  def update_profile(display_name: nil, avatar_url: nil, bio: nil)
     body = {}
     body[:display_name] = display_name if display_name
     body[:avatar_url] = avatar_url if avatar_url
+    body[:bio] = bio if bio
 
     HTTParty.patch("#{url}/rest/v1/profiles",
       headers: auth_headers,
